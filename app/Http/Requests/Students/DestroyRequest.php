@@ -15,9 +15,7 @@ class DestroyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'uuid' => 'required|exists:'.(new User)->getTable().',uuid',
             'uuid' => 'required|uuid|exists:' . (new User)->getTable() . ',uuid',
-
         ];
     }
 }
