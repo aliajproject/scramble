@@ -9,6 +9,21 @@
 
 ## About Laravel
 
+# ✅ 1. Əvvəlki sənədləşdirmə paketini sil (əgər mövcuddursa)
+```
+composer remove rakutentech/laravel-request-docs
+```
+# 🚀 2. Scramble paketini əlavə et
+```
+composer require dedoc/scramble --dev
+```
+# 🔀 3. Ana səhifəni API sənədinə yönləndir
+```
+Route::get('/', function () {
+    return redirect('/docs/api');
+});
+```
+
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
