@@ -10,44 +10,25 @@
 ## About Laravel
 
 # ✅ 1. Əvvəlki sənədləşdirmə paketini sil (əgər mövcuddursa)
-```
+```bash
 composer remove rakutentech/laravel-request-docs
 ```
 # 🚀 2. Scramble paketini əlavə et
-```
+```bash
 composer require dedoc/scramble --dev
 ```
 # 🔀 3. Ana səhifəni API sənədinə yönləndir
-```
+```bash
 Route::get('/', function () {
     return redirect('/docs/api');
 });
 ```
 
 # Codes
-```
-<?php
+<details>
+  <summary><b>İndex üçün:</b></summary>
 
-namespace App\Http\Controllers\Students;
-
-use App\Http\Controllers\Controller;
-use App\Services\Students\StudentsService;
-
-use App\Http\Requests\Students\ShowRequest;
-use App\Http\Requests\Students\IndexRequest;
-use App\Http\Requests\Students\StoreRequest;
-use App\Http\Requests\Students\UpdateRequest;
-use App\Http\Requests\Students\DestroyRequest;
-
-use App\Http\Resources\Students\StudentsResource;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\HttpFoundation\Response;
-
-class StudentsController extends Controller
-{
-    public function __construct(public StudentsService $service) {}
-
+```bash
     /**
      * Get list of students
      *
@@ -57,48 +38,29 @@ class StudentsController extends Controller
      * @apiResourceModel App\Models\User
      */
     public function index(IndexRequest $request): JsonResponse
-    {
-        try {
-            $student = $this->service->index($request);
-            return response()->json([
-                'message' => __('DataFetchedSuccessfully'),
-                'data' => $student
-            ], Response::HTTP_OK);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'message' => __('FailureProcess'),
-                'data' => [],
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
+    {}
+```
+</details>
+<details>
+  <summary><b>Store üçün:</b></summary>
 
+```bash
     /**
-     * Store new student
-     *
-     * @param StoreRequest $request
-     * @return JsonResponse
-     * @apiResource App\Http\Resources\Students\StudentsResource
-     * @apiResourceModel App\Models\User
-     */
+    * Store new student
+    *
+    * @param StoreRequest $request
+    * @return JsonResponse
+    * @apiResource App\Http\Resources\Students\StudentsResource
+    * @apiResourceModel App\Models\User
+    */
     public function store(StoreRequest $request): JsonResponse
-    {
-        DB::beginTransaction();
-        try {
-            $student = $this->service->store($request);
-            DB::commit();
-            return response()->json([
-                'message' => __('DataStoredSuccessfully'),
-                'data' => new StudentsResource($student),
-            ], Response::HTTP_CREATED);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return response()->json([
-                'message' => __('FailureProcess'),
-                'data' => [],
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
+    {}
+```
+</details>
+<details>
+  <summary><b>Show üçün:</b></summary>
 
+```bash
     /**
      * Show student details
      *
@@ -108,21 +70,13 @@ class StudentsController extends Controller
      * @apiResourceModel App\Models\User
      */
     public function show(ShowRequest $request): JsonResponse
-    {
-        try {
-            $student = $this->service->show($request);
-            return response()->json([
-                'message' => __('DataFetchedSuccessfully'),
-                'data' => new StudentsResource($student)
-            ], Response::HTTP_OK);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'message' => __('FailureProcess'),
-                'data' => [],
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
+    {}
+```
+</details>
+<details>
+  <summary><b>Update üçün:</b></summary>
 
+```bash
     /**
      * Update student
      *
@@ -132,24 +86,13 @@ class StudentsController extends Controller
      * @apiResourceModel App\Models\User
      */
     public function update(UpdateRequest $request): JsonResponse
-    {
-        DB::beginTransaction();
-        try {
-            $student = $this->service->update($request);
-            DB::commit();
-            return response()->json([
-                'message' => __('DataUpdatedSuccessfully'),
-                'data' => new StudentsResource($student)
-            ], Response::HTTP_OK);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return response()->json([
-                'message' => __('FailureProcess'),
-                'data' => [],
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
+    {}
+```
+</details>
+<details>
+  <summary><b>Delete üçün:</b></summary>
 
+```bash
     /**
      * Delete student
      *
@@ -157,25 +100,9 @@ class StudentsController extends Controller
      * @return JsonResponse
      */
     public function destroy(DestroyRequest $request): JsonResponse
-    {
-        DB::beginTransaction();
-        try {
-            $student = $this->service->destroy($request);
-            DB::commit();
-            return response()->json([
-                'message' => __('DataDeletedSuccessfully'),
-                'data' => $student,
-            ], Response::HTTP_OK);
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            return response()->json([
-                'message' => __('FailureProcess'),
-                'data' => [],
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-}
+    {}
 ```
+</details>
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
