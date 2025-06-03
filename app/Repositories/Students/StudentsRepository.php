@@ -16,7 +16,7 @@ class StudentsRepository
 
     public function index($search = null, $page = 1)
     {
-        $superadmin = $this->model
+        $index = $this->model
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'like', '%' . $search . '%')
@@ -27,13 +27,13 @@ class StudentsRepository
             ->paginate(30, ['*'], 'page', $page);
 
         return [
-            'current_page' => $superadmin->currentPage(),
-            'data' => $superadmin->items(),
-            'from' => $superadmin->firstItem(),
-            'last_page' => $superadmin->lastPage(),
-            'per_page' => $superadmin->perPage(),
-            'to' => $superadmin->lastItem(),
-            'total' => $superadmin->total(),
+            'current_page' => $index->currentPage(),
+            'data' => $index->items(),
+            'from' => $index->firstItem(),
+            'last_page' => $index->lastPage(),
+            'per_page' => $index->perPage(),
+            'to' => $index->lastItem(),
+            'total' => $index->total(),
         ];
     }
 
